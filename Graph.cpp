@@ -1,21 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Graph.cpp
- * Author: Albuu
- * 
- * Created on December 16, 2020, 12:15 PM
- */
-
 #include "Graph.h"
 
 Graph::Graph(){
     getMatrix();
     createAdjList();
+    createPath();
 }
 void Graph::getMatrix(){
     fstream fin;
@@ -72,4 +60,39 @@ void Graph::printAdjList(){
         }
         cout << endl;
     }
+}
+void Graph::createPath(){
+    int* path = new int[n-1];
+    for(int i = 0; i < n-1; i++){
+        path[i] = i+1;
+    }
+    do{
+        int* perm = new int[n-1];
+        for(int i = 0; i < n-1; i++){
+            perm[i] = path[i];
+        }
+        paths.push_back(perm);
+    }while(next_permutation(path,path+3));
+}
+void Graph::printPath(){
+    for(int i = 0; i < paths.size(); i++){
+        cout << name[0];
+        for(int j = 0; j < n-1; j++){
+            cout << " -> " << name[paths[i][j]];
+        }
+        cout << " -> " <<  name[0] << ": " << cost(paths[i]) << endl;
+    }
+}
+int Graph::cost(int* path){
+    int sum = 0;
+    //Riverside
+    int location = 0;
+    for(int i = 0; i < n-1; i++){
+        sum += m[location][path[i]];
+        //Set start location to where we moved to
+        location = path[i];
+    }
+    //Return to Riverside
+    sum += m[location][0];
+    return sum;
 }

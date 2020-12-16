@@ -22,8 +22,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     Graph graph;
-    graph.printMatrix();
-    graph.printAdjList();
+    graph.printPath();
     return 0;
 }
 

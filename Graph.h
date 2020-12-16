@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 
 class Graph {
@@ -15,6 +16,8 @@ private:
     Extra extra;
     
     vector<vector<int>> adjList;
+    vector<int*> paths;
+    
     string name[4] = {"Riverside", "Perris", "Moreno Valley", "Hemet"};
     int** m;
 
@@ -28,6 +31,10 @@ public:
     //create adjacency list
     void createAdjList();
     void printAdjList();
+    void createPath();
+    void printPath();
+    
+    int cost(int*);
 };
 
 #endif /* GRAPH_H */
