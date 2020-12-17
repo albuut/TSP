@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Extra.o \
 	${OBJECTDIR}/Graph.o \
 	${OBJECTDIR}/main.o
 
@@ -63,11 +62,6 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tsp.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tsp ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/Extra.o: Extra.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Extra.o Extra.cpp
 
 ${OBJECTDIR}/Graph.o: Graph.cpp
 	${MKDIR} -p ${OBJECTDIR}

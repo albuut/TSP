@@ -1,5 +1,3 @@
-build/Debug/Cygwin-Windows/Graph.o: Graph.cpp Graph.h Extra.h
+build/Debug/Cygwin-Windows/Graph.o: Graph.cpp Graph.h
 
 Graph.h:
-
-Extra.h:
