@@ -17,6 +17,7 @@ private:
     
     vector<vector<int>> adjList;
     vector<int*> paths;
+    vector<int> cost;
     
     string name[4] = {"Riverside", "Perris", "Moreno Valley", "Hemet"};
     int** m;
@@ -33,8 +34,9 @@ public:
     void printAdjList();
     void createPath();
     void printPath();
+    void printLowest();
     
-    int cost(int*);
+    int getCost(int*);
 };
 
 #endif /* GRAPH_H */

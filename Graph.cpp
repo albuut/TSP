@@ -54,7 +54,7 @@ void Graph::createAdjList(){
 }
 void Graph::printAdjList(){
     for(int i = 0; i < n; i++){
-        cout << name[i];
+        cout << i+1 << ") " << name[i];
         for(int j = 0; j < adjList[i].size(); j++){
             cout << " -> " << name[adjList[i][j]];
         }
@@ -72,18 +72,18 @@ void Graph::createPath(){
             perm[i] = path[i];
         }
         paths.push_back(perm);
-    }while(next_permutation(path,path+3));
+    }while(next_permutation(path,path+n-1));
 }
 void Graph::printPath(){
     for(int i = 0; i < paths.size(); i++){
-        cout << name[0];
+        cout << i+1 << ") " << name[0];
         for(int j = 0; j < n-1; j++){
             cout << " -> " << name[paths[i][j]];
         }
-        cout << " -> " <<  name[0] << ": " << cost(paths[i]) << endl;
+        cout << " -> " <<  name[0] << ": " << getCost(paths[i]) << endl;
     }
 }
-int Graph::cost(int* path){
+int Graph::getCost(int* path){
     int sum = 0;
     //Riverside
     int location = 0;
@@ -94,5 +94,21 @@ int Graph::cost(int* path){
     }
     //Return to Riverside
     sum += m[location][0];
+    cost.push_back(sum);
     return sum;
+}
+
+void Graph::printLowest(){
+    int min = cost[0];
+    for(int i = 0; i < cost.size(); i++){
+        if(cost[i] < min){
+            min = cost[i];
+        }
+    }
+    for(int i = 0; i < cost.size(); i++){
+        if(cost[i] == min){
+            cout << "Path " << i + 1 << " is the cheapest path at " << cost[i] << endl;
+        }
+    }
+    
 }
